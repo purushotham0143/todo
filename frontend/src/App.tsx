@@ -12,13 +12,13 @@ function App() {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    axios.get<Todo[]>('http://localhost:5000/todos')
+    axios.get<Todo[]>('https://todo-nu-drab.vercel.app/todos')
       .then((res) => setTodos(res.data))
       .catch(err => console.error(err));
   }, []);
 
   const addTodo = () => {
-    axios.post('http://localhost:5000/todos', { title })
+    axios.post('https://todo-nu-drab.vercel.app/todos', { title })
       .then(res => {
         setTodos([...todos, res.data]);
         setTitle('');
@@ -26,7 +26,7 @@ function App() {
   };
 
   const deleteTodo = (id: string) => {
-    axios.delete(`http://localhost:5000/todos/${id}`)
+    axios.delete(`https://todo-nu-drab.vercel.app/todos/${id}`)
       .then(() => {
         setTodos(todos.filter(todo => todo._id !== id));
       });
