@@ -7,12 +7,14 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors());
+app.use(cors(
+    "https://vercel.com/ragala-purushothams-projects/todo-k52n"
+));
 app.use(express.json());
 
 const mongoURL = process.env.MONGO_URL
 
-mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoURL)
   .then(() => {
     console.log("Connected to database");
   })

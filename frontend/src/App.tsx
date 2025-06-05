@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const Vercel_PATH = import.meta.env.PATH
+const Vercel_PATH = import.meta.env.VITE_PATH
+console.log(Vercel_PATH)
 
 interface Todo {
   _id: string;
@@ -9,7 +10,7 @@ interface Todo {
 }
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<any>([]);
   const [title, setTitle] = useState('');
 
   useEffect(() => {
