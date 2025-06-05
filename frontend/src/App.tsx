@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+const Vercel_PATH = import.meta.env.PATH
 
 interface Todo {
   _id: string;
@@ -12,13 +13,13 @@ function App() {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    axios.get<Todo[]>('https://todo-nu-drab.vercel.app/todos')
+    axios.get<Todo[]>(`${Vercel_PATH}/todos`)
       .then((res) => setTodos(res.data))
       .catch(err => console.error(err));
   }, []);
 
   const addTodo = () => {
-    axios.post('https://todo-nu-drab.vercel.app/todos', { title })
+    axios.post(`${Vercel_PATH}/todos`, { title })
       .then(res => {
         setTodos([...todos, res.data]);
         setTitle('');
@@ -26,7 +27,7 @@ function App() {
   };
 
   const deleteTodo = (id: string) => {
-    axios.delete(`https://todo-nu-drab.vercel.app/todos/${id}`)
+    axios.delete(`${Vercel_PATH}/todos/${id}`)
       .then(() => {
         setTodos(todos.filter(todo => todo._id !== id));
       });
